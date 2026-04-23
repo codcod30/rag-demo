@@ -178,6 +178,7 @@ Overlapping chunks reduce the chance of losing meaning at chunk boundaries. This
 * No document-level citations beyond the printed chunk metadata
 * Answer quality depends heavily on retrieval quality
 * Not production-ready for concurrency, access control, or deployment
+* Struggles with broad or summarization-style queries when `k` is small, since retrieval returns only a few local chunks rather than full document context
 
 ## Debuggability
 
