@@ -24,7 +24,6 @@ The goal of this demo is not production readiness. The goal is to make the retri
 
 ```text
 rag-demo/
-  data/
   src/
     ingest.py
     query.py
