@@ -1,0 +1,21 @@
+Convolutional Neural Networks (CNNs)
+
+Convolutional Neural Networks are a class of deep neural networks specifically designed to process grid-structured data, most commonly images. They leverage the spatial structure of images through two key properties: local connectivity and weight sharing.
+
+The Convolutional Layer:
+Instead of connecting each neuron to every input pixel, each neuron in a convolutional layer connects only to a small local region called the receptive field. The same set of weights (a filter or kernel) is shared across all spatial positions. Sliding this filter across the input produces a feature map that represents the presence of a learned pattern at each location.
+
+Multiple filters are learned simultaneously, each detecting a different feature (edges, textures, color gradients at lower layers; object parts at higher layers).
+
+Pooling Layers:
+Pooling reduces the spatial dimensions of feature maps. Max pooling takes the maximum value in each non-overlapping window, providing translation invariance and reducing computation.
+
+Key Architectures:
+- LeNet-5 (1998): First practical CNN; used for digit recognition.
+- AlexNet (2012): Won ImageNet by a large margin using deep CNNs with ReLU, dropout, and GPU training.
+- VGG (2014): Showed that depth (using only 3x3 convolutions) is the key factor in performance.
+- ResNet (2015): Introduced residual connections (skip connections) to train networks with 100+ layers without vanishing gradients.
+- EfficientNet (2019): Systematically scales network width, depth, and resolution for efficiency.
+
+Transfer Learning:
+CNNs trained on ImageNet learn general visual features that transfer well to other tasks. Fine-tuning a pretrained ResNet on a small domain-specific dataset typically outperforms training from scratch.

@@ -1,0 +1,27 @@
+Chunking Strategies for RAG Systems
+
+Chunking, which means splitting source documents into passages for embedding and retrieval, is one of the most impactful design decisions in a RAG pipeline. Poor chunking causes retrieval failures even when the information exists in the corpus.
+
+Why Chunk at All?
+Embedding models have a maximum input length (e.g., 512 tokens for many models). Even if the limit were larger, embedding an entire 50-page document into a single vector loses the granularity needed for precise retrieval.
+
+Fixed-Size Chunking:
+Split the text every N tokens (or characters), with an optional overlap of M tokens. Simple and fast. The overlap ensures that sentences at chunk boundaries are not split across two non-retrievable halves.
+
+Recursive Character Splitting:
+Tries to split on semantic boundaries in order: double newlines (paragraphs), then single newlines, then sentences, then words, then characters. Only falls back to finer splits if the chunk is still too large. This produces more semantically coherent chunks than naive fixed-size splitting.
+
+Semantic Chunking:
+Embed each sentence, then compute the cosine similarity between consecutive sentences. Split at positions where similarity drops sharply, indicating a topic transition. More computationally expensive but produces the most coherent chunks.
+
+Document-Aware Chunking:
+Exploit document structure (headers, sections, paragraphs) to define chunk boundaries. A Markdown or HTML document with clear section headings should be split at those headings.
+
+Chunk Size Guidelines (Empirical):
+- 128-256 tokens: High precision, low context per chunk. Good for fact retrieval.
+- 512 tokens: General-purpose sweet spot for most RAG applications.
+- 1024 tokens: More context per chunk; better for reasoning tasks but noisier retrieval.
+- Overlap: 10-15 percent of chunk size (e.g., 50-100 tokens for 512-token chunks).
+
+Parent Document Retrieval:
+A hybrid approach: embed small child chunks for precise retrieval, but return the larger parent chunk as context. Balances retrieval precision with generation context quality.

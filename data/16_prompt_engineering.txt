@@ -1,0 +1,31 @@
+Prompt Engineering for Large Language Models
+
+Prompt engineering is the practice of designing input text (prompts) to elicit desired behaviors from language models. It is particularly important for in-context learning, where no fine-tuning occurs.
+
+Zero-Shot Prompting:
+Simply describe the task in the prompt without examples. Works well for capable models on common tasks.
+
+Few-Shot Prompting:
+Provide 2-10 examples of (input, output) pairs before the actual query. Demonstrates the desired format and reasoning pattern.
+
+Chain-of-Thought (CoT) Prompting:
+Adding "Let's think step by step" or providing examples with step-by-step reasoning substantially improves performance on arithmetic, commonsense, and symbolic reasoning tasks. The model generates intermediate reasoning steps before the final answer.
+
+Self-Consistency:
+Sample multiple CoT reasoning paths and take a majority vote over final answers. Reduces variance and improves accuracy on reasoning tasks.
+
+ReAct (Reason + Act):
+Interleave reasoning traces with action calls (e.g., search queries, code execution). The model thinks about what action to take, executes it, observes the result, and reasons again. Foundation of modern LLM agents.
+
+Structured Output Prompting:
+Instruct the model to respond in JSON or XML and parse the result programmatically.
+
+RAG-Specific Prompt Design:
+A reliable RAG prompt:
+1. System instruction: "You are a helpful assistant. Answer using only the provided context. If the answer is not in the context, say so."
+2. Retrieved passages: Numbered, with source metadata.
+3. User question.
+4. Optional: "If you are uncertain, say so rather than guessing."
+
+Prompt Injection and Safety:
+When building applications, be aware that user input can attempt to override system instructions. Separate system and user content clearly.

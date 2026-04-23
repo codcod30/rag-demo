@@ -1,0 +1,22 @@
+Decision Trees, Random Forests, and Gradient Boosting
+
+Decision Trees:
+A decision tree partitions the feature space with a sequence of binary splits. At each internal node, a feature and threshold are chosen to minimize impurity (Gini index for classification, variance for regression). Strengths: interpretable, handles mixed data types, no feature scaling required. Weaknesses: high variance, tends to overfit.
+
+Random Forests:
+An ensemble of decision trees that reduces variance through two mechanisms:
+1. Bootstrap aggregation (bagging): Each tree is trained on a random sample (with replacement) of the training data.
+2. Feature subsampling: At each split, only a random subset of features is considered.
+
+Final prediction: majority vote (classification) or mean (regression) across all trees. Random Forests are robust, work well out-of-the-box with little tuning, and are less prone to overfitting than single trees.
+
+Gradient Boosting:
+Builds an ensemble of weak learners (usually shallow trees) sequentially, where each tree corrects the residual errors of the ensemble so far. Formally, the ensemble fits the gradient of the loss function at each step.
+
+XGBoost, LightGBM, CatBoost: Modern highly-optimized implementations of gradient boosting with regularization, histogram-based splitting, and GPU support. These dominate structured and tabular ML competitions and production systems.
+
+Key Hyperparameters for Gradient Boosting:
+- n_estimators: Number of trees. More trees reduce bias but increase computation.
+- learning_rate (shrinkage): Scales each tree contribution. Lower rates require more trees but generalize better.
+- max_depth: Controls tree complexity. Typically 3-8 for gradient boosting.
+- subsample and colsample_bytree: Row and column subsampling ratios that add stochasticity for better generalization.

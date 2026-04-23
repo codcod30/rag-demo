@@ -1,0 +1,22 @@
+Recurrent Neural Networks (RNNs) and LSTMs
+
+Recurrent Neural Networks are designed for sequential data such as text, time series, and audio, where the order of inputs matters. Unlike feedforward networks, RNNs maintain a hidden state that is updated at each time step, allowing information to persist across the sequence.
+
+Basic RNN update: h_t = tanh(W_h * h_{t-1} + W_x * x_t + b). The same weight matrices are shared across all time steps (weight sharing in time).
+
+Vanishing Gradient Problem:
+Backpropagation through time (BPTT) computes gradients by multiplying the Jacobian of h through many time steps. If these Jacobians have eigenvalues less than 1, gradients vanish exponentially, making it hard for basic RNNs to learn long-range dependencies.
+
+Long Short-Term Memory (LSTM):
+Introduced by Hochreiter and Schmidhuber (1997), LSTMs solve the vanishing gradient problem with a gating mechanism. The LSTM cell maintains a cell state, a long-term memory that gradients can flow through with little modification. Three gates control information flow:
+- Forget gate: Decides what to erase from the cell state.
+- Input gate: Decides what new information to write to the cell state.
+- Output gate: Decides what to read out as the hidden state.
+
+Gated Recurrent Unit (GRU):
+A simplified LSTM with only two gates (reset and update). Fewer parameters, often comparable performance.
+
+Bidirectional RNNs:
+Process the sequence in both forward and backward directions, giving each token access to both past and future context.
+
+Today, Transformers have largely replaced RNNs for NLP because they parallelize better and handle long-range dependencies more effectively.

@@ -1,0 +1,23 @@
+Graph Neural Networks (GNNs)
+
+Graph Neural Networks extend deep learning to graph-structured data, where entities (nodes) and their relationships (edges) are the fundamental objects. Applications include molecular property prediction, social network analysis, recommendation systems, and knowledge graphs.
+
+Why Graphs?
+Many real-world systems are naturally relational: molecules are atoms connected by bonds; social networks are people connected by friendships; knowledge graphs are entities connected by semantic relations.
+
+Message Passing:
+The core GNN computation: each node aggregates information from its neighbors to update its own representation. After k rounds of message passing, each node's representation encodes the structure of its k-hop neighborhood.
+
+Common Architectures:
+- GCN (Graph Convolutional Network): Normalizes neighbor features by degree and averages them. Effective for semi-supervised node classification.
+- GraphSAGE: Samples a fixed-size neighborhood at each hop for scalability.
+- GAT (Graph Attention Network): Uses attention weights to aggregate neighbors.
+- GIN (Graph Isomorphism Network): Theoretically most expressive; uses sum aggregation.
+
+Graph-Level Tasks:
+For predicting properties of the whole graph (e.g., molecular toxicity), use global pooling to produce a single graph embedding from all node embeddings.
+
+Limitations:
+- Over-smoothing: With too many layers, all node representations converge to the same value.
+- Scalability: Full-batch training on large graphs requires specialized mini-batch sampling.
+- Expressiveness: Standard GNNs cannot distinguish certain non-isomorphic graphs.

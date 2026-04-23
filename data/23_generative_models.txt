@@ -1,0 +1,12 @@
+Generative Models: VAEs, GANs, and Diffusion
+
+Generative models learn the underlying data distribution and can sample novel examples from it.
+
+Variational Autoencoders (VAEs):
+Encoder-decoder architecture with a probabilistic bottleneck. The encoder maps input x to a distribution over a latent space z (mean mu and variance sigma), rather than a deterministic point. A sample z is decoded to reconstruct x. The loss combines reconstruction error with a KL divergence term that regularizes the latent space.
+
+Generative Adversarial Networks (GANs):
+Two networks compete: a Generator G that maps noise z to fake samples, and a Discriminator D that classifies inputs as real or fake. GANs produce sharp, realistic images but training is notoriously unstable (mode collapse, training divergence). Variants: DCGAN, StyleGAN2, BigGAN.
+
+Diffusion Models:
+Forward process: Gradually corrupt data by adding Gaussian noise over T steps until the signal is pure noise. Reverse process: Train a neural network to predict and remove the noise at each step. At generation time, start from pure noise and iteratively denoise. Diffusion models produce state-of-the-art image quality (DALL-E 2, Stable Diffusion, Imagen) and are more stable to train than GANs. The tradeoff: inference requires T denoising steps, though DDIM and DPM-Solver reduce this to 20-50 steps.

@@ -1,0 +1,16 @@
+Transformers and the Attention Mechanism
+
+The Transformer architecture, introduced by Vaswani et al. in the 2017 paper "Attention Is All You Need", revolutionized natural language processing and later spread to computer vision, audio, and multimodal domains.
+
+Before Transformers, the dominant approach for sequential data was recurrent neural networks (RNNs) and LSTMs. These process tokens one at a time, making it hard to capture long-range dependencies and difficult to parallelize training.
+
+The Transformer solves this with self-attention: every token in a sequence attends to every other token simultaneously. This means the model can directly relate "she" to "the scientist" even if they are 20 tokens apart, and all these relationships are computed in parallel.
+
+How self-attention works:
+For each token, three vectors are computed: Query (Q), Key (K), and Value (V), via learned linear projections. The attention score between token i and token j is dot(Q_i, K_j) / sqrt(d_k), where d_k is the key dimension (the scaling prevents dot products from growing too large). These scores are passed through softmax to get a probability distribution, which is used to compute a weighted sum of the Value vectors. The result is a new representation for token i that is informed by all other tokens.
+
+Multi-head attention runs h parallel attention heads, each with different Q/K/V projections, allowing the model to jointly attend to information from different representation subspaces. The outputs of all heads are concatenated and linearly projected.
+
+BERT uses only the encoder. GPT uses only the decoder. T5 and the original Transformer use both.
+
+Positional encodings (sinusoidal or learned) are added to token embeddings before the first layer, since self-attention itself is permutation-invariant and has no inherent notion of token order.

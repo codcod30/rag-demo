@@ -24,6 +24,8 @@ The goal of this demo is not production readiness. The goal is to make the retri
 
 ```text
 rag-demo/
+  data/                # sample documents (included)
+    ...
   src/
     ingest.py
     query.py
@@ -76,11 +78,9 @@ You can verify the model is available with:
 ```bash
 ollama list
 ```
-### 5. Create data folder
+### 5. Sample documents are included
 
-```bash
-mkdir data
-```
+Sample `.txt` documents are already included in the `data/` folder. Remove them if necessary.
 
 ### 6. Add documents
 

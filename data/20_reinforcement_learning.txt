@@ -1,0 +1,25 @@
+Reinforcement Learning
+
+Reinforcement Learning (RL) is a paradigm where an agent learns to make sequential decisions by interacting with an environment to maximize a cumulative reward signal.
+
+Key Components:
+- Agent: The decision-maker (the policy model).
+- Environment: The world the agent interacts with.
+- State (s): The current situation.
+- Action (a): The choice made by the agent.
+- Reward (r): A scalar signal indicating how good the action was.
+- Policy (pi): A mapping from states to actions.
+- Value Function V(s): Expected cumulative reward from state s.
+- Q-Function Q(s, a): Expected cumulative reward from taking action a in state s.
+
+The Exploration-Exploitation Dilemma:
+The agent must balance exploiting known rewarding actions and exploring new actions. Too much exploitation leads to local optima. Too much exploration never cashes in on learned knowledge.
+
+Key Algorithms:
+- Q-Learning: Off-policy tabular algorithm. Learns the optimal Q-function using the Bellman equation.
+- Deep Q-Network (DQN): Approximates Q-function with a neural network. Achieved human-level performance on Atari games.
+- Policy Gradient Methods (REINFORCE): Directly optimize the policy by gradient ascent on expected reward.
+- Actor-Critic: Combines a policy (actor) with a value function (critic).
+- PPO (Proximal Policy Optimization): Clips the policy update to prevent destructively large steps. Standard algorithm for fine-tuning LLMs with RLHF.
+
+Applications: Game playing (AlphaGo, AlphaFold), robotics, recommendation systems, algorithmic trading, and LLM alignment.

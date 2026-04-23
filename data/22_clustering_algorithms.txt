@@ -1,0 +1,21 @@
+Clustering Algorithms
+
+Clustering is an unsupervised learning task that groups data points into clusters such that points within a cluster are more similar to each other than to points in other clusters.
+
+K-Means:
+Partitions n points into k clusters by iteratively (1) assigning each point to its nearest centroid and (2) recomputing centroids as cluster means. Converges to a local minimum of within-cluster sum of squared distances. Limitations: requires specifying k in advance; assumes spherical equal-size clusters; sensitive to initialization.
+
+DBSCAN (Density-Based Spatial Clustering of Applications with Noise):
+Groups points that are closely packed together (high-density regions) and marks isolated points as outliers. Does not require specifying k; discovers clusters of arbitrary shape. Key parameters: epsilon (neighborhood radius) and min_samples (minimum points to form a core point).
+
+Hierarchical Clustering:
+- Agglomerative (bottom-up): Start with each point as its own cluster; iteratively merge the two closest clusters. Produces a dendrogram.
+- Divisive (top-down): Start with one cluster; recursively split.
+
+Gaussian Mixture Models (GMM):
+Assumes the data is generated from a mixture of k Gaussian distributions. Learns means, covariance matrices, and mixing proportions via the EM algorithm. Soft assignments: each point has a probability of belonging to each cluster.
+
+Evaluating Clustering:
+- Silhouette Score: Measures how similar a point is to its own cluster vs. the nearest other cluster.
+- Davies-Bouldin Index: Lower is better.
+- If ground truth is available: Adjusted Rand Index (ARI) or Normalized Mutual Information (NMI).

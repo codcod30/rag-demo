@@ -1,0 +1,22 @@
+Natural Language Processing: Foundations
+
+Natural Language Processing (NLP) is the subfield of AI concerned with enabling computers to understand, interpret, and generate human language.
+
+Core NLP Tasks:
+- Tokenization: Splitting text into tokens (words, subwords, characters). Modern LLMs use Byte-Pair Encoding (BPE) or WordPiece.
+- Part-of-Speech Tagging: Labeling each word with its grammatical role.
+- Named Entity Recognition (NER): Identifying and classifying named entities (persons, organizations, locations, dates) in text.
+- Coreference Resolution: Identifying which mentions refer to the same entity.
+- Sentiment Analysis: Classifying the sentiment polarity of text.
+- Machine Translation: Translating text from one language to another.
+- Question Answering (QA): Given a question and context document, extract or generate an answer.
+- Text Summarization: Producing a shorter version of a document that retains key information.
+
+Text Representation Evolution:
+- Bag of Words: Represent a document as a vector of word counts, ignoring order.
+- TF-IDF: Weight word counts by inverse document frequency to reduce the influence of common words.
+- Word2Vec / GloVe: Dense semantic word vectors.
+- ELMo: Contextual embeddings from a bidirectional LSTM; the same word has different representations depending on context.
+- BERT / Transformers: State-of-the-art contextual representations from self-attention.
+
+The core challenge is that language understanding requires world knowledge, reasoning, and pragmatics that go far beyond pattern matching. LLMs have made remarkable progress on this, but still struggle with systematic reasoning and grounded factual claims.

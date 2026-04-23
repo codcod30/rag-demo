@@ -1,0 +1,23 @@
+AI Safety and Alignment
+
+AI alignment is the challenge of ensuring that AI systems behave in accordance with human values and intentions, especially as systems become more capable.
+
+Why Alignment Is Hard:
+Specifying what we want from an AI system is difficult because human values are complex, context-dependent, and sometimes self-contradictory. When we optimize a system for a proxy objective, it may find ways to maximize that proxy that diverge from our true intent, a phenomenon called specification gaming or reward hacking. Goodhart's Law: when a measure becomes a target, it ceases to be a good measure.
+
+Key Alignment Approaches:
+
+RLHF (Reinforcement Learning from Human Feedback):
+Humans rank model outputs; a reward model is trained to predict these preferences; the LLM is fine-tuned via PPO to maximize the reward model's score. Used to create ChatGPT, Claude, and Gemini.
+
+Constitutional AI (Anthropic):
+The model is trained to critique its own outputs against a set of principles (a "constitution") and revise them. Reduces reliance on human labeling for each behavior.
+
+Interpretability and Mechanistic Interpretability:
+Understand what computations are happening inside neural networks. Tools like sparse autoencoders attempt to identify monosemantic features. Understanding model internals is essential for verifying alignment and detecting deceptive behavior.
+
+Robustness and Red-Teaming:
+Systematically try to elicit harmful behaviors from AI systems to identify and fix vulnerabilities before deployment.
+
+Scalable Oversight:
+As AI systems become more capable than humans in some domains, how can humans verify their outputs? Approaches include debate (two AI agents argue for opposite conclusions; humans judge) and recursive reward modeling.

@@ -1,0 +1,16 @@
+Neural Networks: Fundamentals
+
+A neural network is a computational model loosely inspired by the structure of the human brain. It consists of layers of interconnected nodes (called neurons or units) that transform input data into output predictions through a series of mathematical operations.
+
+The basic building block is the artificial neuron. It receives one or more numeric inputs, multiplies each by a learned weight, sums the products, adds a bias term, and passes the result through an activation function. Mathematically: output = activation(w1*x1 + w2*x2 + ... + wn*xn + b).
+
+Neural networks are organized into layers:
+- Input layer: Receives the raw features (e.g., pixel values, token embeddings).
+- Hidden layers: Perform intermediate transformations. A network with two or more hidden layers is called a "deep" neural network.
+- Output layer: Produces the final prediction (a class probability distribution for classification, a scalar for regression).
+
+The key to learning is backpropagation combined with gradient descent. After a forward pass computes a prediction, a loss function (e.g., cross-entropy for classification) measures how wrong the prediction was. Backpropagation uses the chain rule of calculus to compute the gradient of the loss with respect to every weight in the network. Gradient descent then updates each weight in the direction that reduces the loss.
+
+Activation functions introduce non-linearity, which is essential. Without them, stacking multiple linear layers is equivalent to a single linear layer. Common activations include ReLU (max(0, x)), sigmoid (1/(1+e^-x)), and tanh. ReLU is most widely used in hidden layers because it is computationally cheap and mitigates the vanishing gradient problem.
+
+Universal Approximation Theorem: A neural network with at least one hidden layer and a non-linear activation can approximate any continuous function to arbitrary precision, given enough neurons. This theoretical result underlies the expressive power of neural networks.

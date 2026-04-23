@@ -1,0 +1,19 @@
+Embeddings and Vector Search
+
+An embedding is a dense, fixed-length vector representation of an object such that similar objects are close together in the vector space. Embeddings are the foundation of modern semantic search and retrieval-augmented generation.
+
+Word Embeddings:
+Word2Vec (2013) was a breakthrough: it trained a shallow neural network on a large corpus and discovered that word vectors encode semantic relationships. Famous example: king - man + woman approximates queen. The model learns this purely from co-occurrence statistics.
+
+GloVe (Global Vectors) learns embeddings from global word-word co-occurrence matrices. FastText extends Word2Vec by representing words as bags of character n-grams, handling morphological variants and out-of-vocabulary words.
+
+Sentence and Document Embeddings:
+For retrieval tasks, we need embeddings for longer texts. The Sentence-BERT (SBERT) model fine-tunes BERT using a siamese network structure with a contrastive loss, producing sentence embeddings that can be compared via cosine similarity. The all-MiniLM-L6-v2 model is a popular lightweight variant.
+
+Vector Similarity Search:
+Given a query embedding q and a database of n document embeddings, retrieval finds the top-k most similar embeddings by a distance metric:
+- Cosine similarity: cos(q, d) = (q dot d) / (|q| * |d|). Measures the angle between vectors; scale-invariant.
+- Euclidean (L2) distance: sqrt(sum((q_i - d_i)^2)). Measures absolute spatial distance.
+- Dot product: q dot d. Equivalent to cosine similarity when vectors are unit-normalized.
+
+For small datasets (under 1M vectors), exact search is feasible. sqlite-vec implements this as a virtual table with a simple KNN query. For large-scale retrieval, approximate nearest neighbor (ANN) algorithms like HNSW or FAISS are used to trade a small amount of accuracy for massive speed gains.

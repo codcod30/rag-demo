@@ -1,0 +1,28 @@
+Data Preprocessing for Machine Learning
+
+The quality of a machine learning model is bounded by the quality of its training data. Data preprocessing transforms raw, messy data into a clean, structured form suitable for training.
+
+Handling Missing Values:
+- Deletion: Remove rows with missing values. Simple but wasteful; can bias the dataset if missingness is not random.
+- Mean/Median/Mode Imputation: Fill with the column's central tendency. Reduces variance and distorts distributions.
+- Model-based Imputation: Train a model to predict missing values from other features.
+- Indicator Variables: Add a binary column flagging that a value was missing; preserves missingness as a feature.
+
+Feature Scaling:
+- Standardization (Z-score normalization): (x - mean) / std. Centers features at 0 with unit variance. Necessary for algorithms sensitive to feature magnitudes (SVM, k-NN, neural networks).
+- Min-max scaling: (x - min) / (max - min). Scales to [0, 1]. Sensitive to outliers.
+- Robust scaling: (x - median) / IQR. Resistant to outliers.
+
+Encoding Categorical Variables:
+- One-hot encoding: Creates a binary column for each category. Good for nominal data.
+- Label encoding: Maps each category to an integer. Only appropriate for ordinal features.
+- Target encoding: Replaces each category with the mean target value. Powerful but prone to leakage.
+- Embeddings: Learned dense representations for high-cardinality categorical features.
+
+Handling Imbalanced Classes:
+- SMOTE: Generates synthetic minority class examples by interpolating between existing ones.
+- Undersampling: Remove majority class examples. Fast but discards data.
+- Class weights: Penalize misclassification of the minority class more heavily in the loss function.
+
+Train / Validation / Test Split:
+Always hold out a test set before any preprocessing or model selection. Fit preprocessing transformations on the training set only; apply them to validation and test sets to prevent data leakage.

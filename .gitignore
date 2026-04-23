@@ -11,8 +11,9 @@ venv/
 rag.db
 *.db
 
-# Data (IMPORTANT for your project)
-data/
+# Ignore everything except .txt files
+data/*
+!data/*.txt
 
 # HuggingFace / embeddings cache
 .cache/

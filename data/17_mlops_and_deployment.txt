@@ -1,0 +1,30 @@
+MLOps: Deploying and Maintaining ML Models
+
+MLOps (Machine Learning Operations) is the set of practices and tools for reliably deploying, monitoring, and maintaining machine learning models in production.
+
+The Full ML Lifecycle:
+1. Data ingestion and versioning (DVC, Delta Lake)
+2. Feature engineering and feature stores (Feast, Tecton)
+3. Model training and experiment tracking (MLflow, Weights and Biases)
+4. Model evaluation and validation
+5. Model registry and versioning
+6. Deployment (REST API, batch, streaming)
+7. Monitoring (data drift, model drift, infrastructure health)
+8. Retraining and rollback
+
+Deployment Patterns:
+- REST API with Flask/FastAPI: Common for real-time inference. Containerize with Docker; orchestrate with Kubernetes.
+- Batch Prediction: Run inference on large datasets offline.
+- Streaming Inference: Use Kafka/Flink for continuous real-time scoring on event streams.
+- Model Serving Frameworks: TorchServe, Triton Inference Server, Ray Serve for high-throughput serving.
+
+Monitoring:
+- Data Drift: The distribution of incoming features shifts from the training distribution.
+- Concept Drift: The relationship between features and labels changes over time.
+- Model Performance Degradation: Monitor metrics like latency, error rates, and accuracy.
+
+Canary Deployments and A/B Testing:
+Route a small percentage of traffic to a new model version while most traffic goes to the existing version.
+
+Continuous Training:
+Pipelines that automatically retrain models when performance degrades below a threshold or on a fixed schedule.

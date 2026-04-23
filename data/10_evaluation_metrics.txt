@@ -1,0 +1,29 @@
+Evaluating Machine Learning Models
+
+Choosing the right evaluation metric is critical. Optimizing the wrong metric leads to models that perform well on paper but fail in practice.
+
+Classification Metrics:
+- Accuracy: (TP + TN) / total. Misleading when classes are imbalanced.
+- Precision: TP / (TP + FP). Of the items predicted positive, how many truly are? Important when false positives are costly (e.g., spam filtering).
+- Recall (Sensitivity): TP / (TP + FN). Of all truly positive items, how many did we catch? Important when false negatives are costly (e.g., cancer screening).
+- F1 Score: 2 * (Precision * Recall) / (Precision + Recall). Harmonic mean; useful when classes are imbalanced.
+- ROC-AUC: Area under the Receiver Operating Characteristic curve. Measures discrimination ability across all classification thresholds.
+- PR-AUC (Average Precision): Better than ROC-AUC when positives are rare.
+
+Regression Metrics:
+- MSE: Mean Squared Error; penalizes large errors heavily.
+- RMSE: Root MSE; in same units as target variable.
+- MAE: Mean Absolute Error; more robust to outliers than MSE.
+- R-squared: Fraction of variance explained by the model.
+
+Retrieval / Ranking Metrics:
+- Precision@k: Fraction of retrieved top-k items that are relevant.
+- Recall@k: Fraction of all relevant items that appear in the top-k.
+- Mean Reciprocal Rank (MRR): Average of 1/rank for the first relevant result.
+- NDCG (Normalized Discounted Cumulative Gain): Accounts for position; higher-ranked relevant results get more credit.
+
+NLP Generation Metrics:
+- BLEU: Measures n-gram overlap between generated and reference text.
+- ROUGE: Measures recall-oriented n-gram overlap; commonly used for summarization.
+- BERTScore: Uses BERT embeddings to measure semantic similarity.
+- LLM-as-judge: Use a strong LLM to rate generated outputs on dimensions like faithfulness and relevance.

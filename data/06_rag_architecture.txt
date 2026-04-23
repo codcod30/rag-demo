@@ -1,0 +1,30 @@
+Retrieval-Augmented Generation (RAG)
+
+Retrieval-Augmented Generation (RAG) is a technique that combines a retrieval system with a generative language model. Instead of relying solely on the knowledge encoded in the LLM's parameters, RAG retrieves relevant external documents at query time and conditions the model's generation on that retrieved content.
+
+The core problem RAG solves: Large language models are trained on data up to a knowledge cutoff, cannot access private or proprietary documents, and sometimes hallucinate (generate plausible-sounding but false information). RAG addresses all three issues by grounding answers in retrieved source documents.
+
+RAG Pipeline - Two Phases:
+
+1. Offline Ingestion:
+   a. Document loading: Read source documents (PDFs, HTML, plain text, etc.)
+   b. Chunking: Split documents into overlapping passages of approximately 300-1000 tokens
+   c. Embedding: Encode each chunk with an embedding model
+   d. Indexing: Store chunks and their embeddings in a vector database
+
+2. Online Query:
+   a. Embed the user's query with the same embedding model
+   b. Retrieve top-k most similar chunks via vector similarity search
+   c. Construct a prompt that includes the retrieved passages as context
+   d. Pass the prompt to an LLM to generate a grounded answer
+
+Design Choices and Tradeoffs:
+- Chunk size: Smaller chunks give more precise retrieval but less context per chunk. Larger chunks give more context but noisier retrieval.
+- Top-k: Retrieving more chunks increases recall but may introduce noise and exceed context window limits.
+- Embedding model: Larger models are more accurate but slower and costlier.
+- Reranking: A second-stage cross-encoder can rerank the top-k results for higher precision.
+
+Limitations:
+- Retrieval failures: If the relevant chunk is not in the top-k, the LLM cannot answer correctly.
+- Chunk boundary issues: Answers that span multiple chunks may be fragmented.
+- Context length: Too many retrieved chunks may exceed the LLM's context window.

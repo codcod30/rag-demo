@@ -1,0 +1,21 @@
+Large Language Models (LLMs)
+
+Large Language Models (LLMs) are neural networks, typically Transformer decoders, trained on massive text corpora with the objective of predicting the next token. By scaling both model size and dataset size, researchers discovered emergent capabilities: reasoning, arithmetic, code generation, and in-context learning.
+
+Key milestones:
+- GPT-1 (2018): OpenAI showed that pretraining on large corpora followed by fine-tuning outperformed approaches trained from scratch.
+- BERT (2018): Google introduced bidirectional pretraining with Masked Language Modeling, achieving state-of-the-art on many NLP benchmarks.
+- GPT-2 (2019): Demonstrated that language models could generate coherent long-form text.
+- GPT-3 (2020): 175B parameters, showed compelling few-shot and zero-shot capabilities. Made it clear that scale alone produces qualitative capability jumps.
+- InstructGPT / ChatGPT (2022): Applied Reinforcement Learning from Human Feedback (RLHF) to align GPT-3 outputs with human intent.
+- GPT-4, Claude, Gemini (2023+): Multimodal, highly capable LLMs with improved reasoning and context lengths.
+
+Scaling Laws (Chinchilla, 2022): Hoffmann et al. showed that for a fixed compute budget, the optimal strategy is to scale model size and dataset size equally.
+
+In-Context Learning (ICL): LLMs can perform new tasks given only a few examples in the prompt, without any gradient updates.
+
+Challenges:
+- Hallucination: Models confidently generate false facts.
+- Context length: Attention is O(n^2) in sequence length.
+- Alignment: Ensuring model behavior is helpful, harmless, and honest.
+- Cost: Training and inference are computationally expensive.

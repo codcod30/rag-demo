@@ -1,0 +1,24 @@
+Deep Dive: Attention Mechanisms
+
+Attention mechanisms allow neural networks to dynamically focus on different parts of the input when producing each output. They were first introduced for machine translation (Bahdanau et al., 2015) and later became the core of the Transformer architecture.
+
+Intuition:
+In sequence-to-sequence translation, the encoder produces a fixed-size context vector from the full source sentence, which the decoder uses to generate each target word. For long sentences, this bottleneck loses information. Attention replaces the single vector with a weighted mixture of all encoder hidden states, computed dynamically for each decoder step.
+
+Scaled Dot-Product Attention:
+Attention(Q, K, V) = softmax(Q * K^T / sqrt(d_k)) * V
+
+Where Q (Queries), K (Keys), and V (Values) are matrices. The intuition: queries look up relevant keys, the dot product measures compatibility, scaling by sqrt(d_k) prevents overly peaked softmax, and the output is a weighted blend of values.
+
+Multi-Head Attention:
+Rather than computing one attention function, use h parallel heads with independent learned projections of Q, K, V. Each head can attend to different aspects of the input. Outputs are concatenated and projected.
+
+Cross-Attention vs. Self-Attention:
+- Self-attention: Q, K, V all come from the same sequence.
+- Cross-attention: Q comes from the decoder, K and V come from the encoder.
+
+Flash Attention:
+A GPU-efficient implementation of exact attention that tiles computation to fit in GPU SRAM, reducing memory bandwidth significantly. Critical for training with long sequences; it is now standard in modern LLM training.
+
+Sparse Attention:
+Longformer and BigBird use sparse attention patterns to reduce attention complexity from O(n^2) to O(n), enabling processing of very long documents.

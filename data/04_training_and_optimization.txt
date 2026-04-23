@@ -1,0 +1,25 @@
+Training Neural Networks: Optimization and Loss Functions
+
+Training a neural network means finding the values of all its parameters (weights and biases) that minimize a chosen loss function on the training data. This is an optimization problem, solved iteratively using variants of gradient descent.
+
+Loss Functions:
+- Cross-entropy loss: Used for classification. For a C-class problem, L = -sum_c(y_c * log(p_c)), where y is the one-hot ground truth and p is the predicted probability.
+- Mean Squared Error (MSE): Used for regression. L = (1/n) * sum((y_hat - y)^2).
+- Huber loss: A blend of MSE and MAE; less sensitive to outliers than MSE.
+
+Gradient Descent Variants:
+- Batch Gradient Descent: Computes gradient over the entire dataset before updating weights. Stable but slow and memory-intensive.
+- Stochastic Gradient Descent (SGD): Updates weights after each single example. Fast but noisy.
+- Mini-batch Gradient Descent: The practical default. Updates weights after each mini-batch (e.g., 32 or 256 examples). Balances computational efficiency and gradient noise.
+
+Adaptive Optimizers:
+- Momentum: Accumulates a velocity vector in directions of persistent gradient, accelerating learning in those directions.
+- RMSProp: Divides the learning rate by a running average of the magnitude of recent gradients.
+- Adam (Adaptive Moment Estimation): Combines momentum and RMSProp. Adam is the default optimizer for most deep learning work today.
+- AdamW: Adam with decoupled weight decay regularization; preferred when training large language models.
+
+Learning Rate Scheduling:
+The learning rate is the most important hyperparameter. Common schedules include step decay, cosine annealing, and warmup followed by decay (standard for training transformers).
+
+Overfitting and Regularization:
+When a model memorizes the training data instead of generalizing, it overfits. Countermeasures: L1/L2 weight regularization, dropout (randomly zeroing activations during training), data augmentation, and early stopping.

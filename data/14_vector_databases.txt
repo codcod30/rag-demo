@@ -1,0 +1,23 @@
+Vector Databases
+
+A vector database is a storage system optimized for storing, indexing, and querying high-dimensional vector embeddings. As embedding models become central to AI applications, vector databases have become critical infrastructure.
+
+Why Not Use a Regular Database?
+Traditional relational databases are designed for exact lookups on structured scalar data. Finding the top-k nearest neighbors in a 768-dimensional space requires computing cosine similarity between the query and every stored vector, an O(n * d) operation that is too slow at scale without specialized indexing.
+
+Key Operations:
+- Insert: Add a vector and associated metadata to the index.
+- Query (KNN): Given a query vector, find the k nearest neighbors by a distance metric.
+- Filter: Combine vector search with metadata filters.
+- Update/Delete: Modify or remove stored vectors.
+
+Indexing Algorithms:
+- Flat (Exact): Brute-force comparison of query with all stored vectors. Accurate but slow for large n.
+- HNSW (Hierarchical Navigable Small World): A graph-based index with O(log n) approximate query time.
+- IVF (Inverted File Index): Clusters vectors into Voronoi cells; at query time, only probes nearest cells.
+- Product Quantization (PQ): Compresses vectors to reduce memory footprint at the cost of some accuracy.
+
+SQLite-vec:
+sqlite-vec is an SQLite extension that adds a vec0 virtual table for vector similarity search. It supports Euclidean and cosine distances with exact KNN search. The entire index is stored in a single .db file, no server required, ideal for prototypes and edge deployments. The tradeoff is that it does not support ANN indexing, so it scales to roughly 100k-1M vectors before query latency becomes a concern.
+
+Popular Production Vector Databases: Pinecone (managed), Weaviate, Qdrant, Milvus, pgvector, Chroma.

@@ -1,0 +1,20 @@
+Model Compression and Efficient Inference
+
+Deploying large neural networks at scale requires reducing their computational cost. Model compression techniques make models faster and smaller with minimal accuracy loss.
+
+Quantization:
+Reduces the bit-width of weights and/or activations. Full precision (FP32, 4 bytes per value) to FP16 (2 bytes) to INT8 (1 byte) to INT4 (0.5 bytes). Halving bit-width roughly halves memory and increases throughput on hardware with efficient low-precision arithmetic.
+- Post-Training Quantization (PTQ): Quantize a trained model without retraining; fast but may degrade accuracy.
+- Quantization-Aware Training (QAT): Simulate quantization during training so the model adapts.
+- GPTQ, AWQ, bitsandbytes (bnb): Specialized algorithms for quantizing LLMs to 4-bit with minimal perplexity increase.
+
+Pruning:
+Remove weights or neurons that contribute little to the output.
+- Unstructured pruning: Set individual weights to zero (sparse).
+- Structured pruning: Remove entire filters, heads, or layers. Yields dense sub-networks that run faster on standard hardware.
+
+Knowledge Distillation:
+Train a small "student" model to mimic a large "teacher" model. The student is trained on soft probability distributions from the teacher. DistilBERT achieves 97 percent of BERT's performance at 40 percent fewer parameters.
+
+Neural Architecture Search (NAS):
+Automatically search for architectures optimized for a target hardware platform and accuracy constraint. MobileNet and EfficientNet were found using NAS.

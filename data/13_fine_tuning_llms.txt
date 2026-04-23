@@ -1,0 +1,24 @@
+Fine-Tuning Large Language Models
+
+Fine-tuning adapts a pretrained language model to a specific task or domain by continuing training on a curated dataset. It is far more efficient than training from scratch because the model already possesses general language understanding.
+
+Full Fine-Tuning:
+All model parameters are updated. Achieves the best task performance but requires significant GPU memory. Susceptible to catastrophic forgetting of pretrained knowledge.
+
+Instruction Fine-Tuning:
+Rather than fine-tuning on raw text, train on (instruction, response) pairs. Teaches the model to follow natural language instructions. Models like Alpaca and Vicuna were created this way from LLaMA base models.
+
+RLHF (Reinforcement Learning from Human Feedback):
+Three-stage process used by InstructGPT and ChatGPT:
+1. Supervised Fine-Tuning (SFT): Fine-tune on human-written demonstrations.
+2. Reward Model: Train a model to predict which of two completions human annotators prefer.
+3. PPO: Use Proximal Policy Optimization to fine-tune the SFT model to maximize the reward model's score.
+
+Parameter-Efficient Fine-Tuning (PEFT):
+Only a small number of parameters are updated, dramatically reducing memory and compute:
+- LoRA (Low-Rank Adaptation): Decomposes weight updates into two low-rank matrices (W = W0 + A*B, where A and B are small). A 7B model can be fine-tuned on a single consumer GPU.
+- QLoRA: Quantizes the base model to 4-bit while keeping the LoRA adapters in higher precision.
+- Prefix Tuning / Prompt Tuning: Learns a small set of soft prompt tokens prepended to the input.
+
+Domain Adaptation:
+Continued pretraining on domain-specific text before task-specific fine-tuning improves performance on specialized tasks. This two-stage approach is standard practice.
