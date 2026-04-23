@@ -1,0 +1,4 @@
+sqlite-vec
+sentence-transformers
+numpy
+requests

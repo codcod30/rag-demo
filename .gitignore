@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+.venv/
+venv/
+
+# Database
+rag.db
+*.db
+
+# Data (IMPORTANT for your project)
+data/
+
+# HuggingFace / embeddings cache
+.cache/
+models/
+*.bin
+*.pt
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
