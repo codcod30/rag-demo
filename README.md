@@ -6,35 +6,41 @@ It ingests documents from a `data/` folder, chunks them, generates embeddings, s
 
 The goal of this demo is not production readiness. The goal is to make the retrieval behavior easy to inspect, debug, and explain.
 
+---
+
 ## Features
 
-* Ingests 10–30 local text documents
-* Splits documents into overlapping chunks
-* Generates embeddings with `sentence-transformers`
-* Stores chunks and embeddings in SQLite using `sqlite-vec`
-* Retrieves the top-k relevant passages for a query
-* Uses Ollama for fully local answer generation
-* Prints both retrieved context and final answer for easy inspection
+- Ingests 10–30 local text documents  
+- Splits documents into overlapping chunks  
+- Generates embeddings with `sentence-transformers`  
+- Stores chunks and embeddings in SQLite using `sqlite-vec`  
+- Retrieves the top-k relevant passages for a query  
+- Uses Ollama for fully local answer generation  
+- Prints both retrieved context and final answer for easy inspection  
+
+---
 
 ## Project Structure
 
 ```text
 rag-demo/
   data/
-    doc1.txt
-    doc2.txt
-    ...
   src/
     ingest.py
     query.py
-  rag.db
   requirements.txt
   README.md
 ```
 
 ## Setup
 
-### 1. Create and activate a virtual environment
+### 1. Clone repository
+```bash
+git clone <repo-url>
+cd rag-demo
+```
+
+### 2. Create and activate a virtual environment
 
 ```bash
 python -m venv .venv
@@ -52,13 +58,13 @@ macOS/Linux:
 source .venv/bin/activate
 ```
 
-### 2. Install Python dependencies
+### 3. Install Python dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Install Ollama and pull a model
+### 4. Install Ollama and pull a model
 
 Install Ollama, then pull the model used by this demo:
 
@@ -71,12 +77,17 @@ You can verify the model is available with:
 ```bash
 ollama list
 ```
+### 5. Create data folder
 
-### 4. Add documents
+```bash
+mkdir data
+```
+
+### 6. Add documents
 
 Place 10–30 `.txt` documents in the `data/` folder.
 
-### 5. Build the index
+### 7. Build the index
 
 ```bash
 python src/ingest.py
@@ -84,7 +95,7 @@ python src/ingest.py
 
 This loads the documents, chunks them, generates embeddings, and stores everything in `rag.db`.
 
-### 6. Ask a question
+### 8. Ask a question
 
 ```bash
 python src/query.py "your question here" 3
