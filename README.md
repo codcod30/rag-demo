@@ -8,6 +8,37 @@ Built to deepen my understanding of RAG systems from the ground up, every compon
 
 ---
 
+## System Overview
+ 
+```
+Documents (data/)
+      │
+      ▼
+  src/ingest.py
+  ┌─────────────────────────────────────┐
+  │ 1. Load .txt documents              │
+  │ 2. Split into overlapping chunks    │
+  │ 3. Generate embeddings              │
+  │    (sentence-transformers)          │
+  │ 4. Store in SQLite + sqlite-vec     │
+  └─────────────────────────────────────┘
+              │
+              ▼
+           rag.db
+              │
+              ▼
+  src/query.py
+  ┌─────────────────────────────────────┐
+  │ 1. Embed user query                 │
+  │ 2. Retrieve top-k similar chunks    │
+  │ 3. Build grounded prompt            │
+  │ 4. Generate answer via Ollama       │
+  │ 5. Print context + answer           │
+  └─────────────────────────────────────┘
+```
+
+---
+
 ## Features
 
 - Ingests 10–30 local text documents  
@@ -24,11 +55,11 @@ Built to deepen my understanding of RAG systems from the ground up, every compon
 
 ```text
 rag-demo/
-  data/                # sample documents (included)
+  data/                # place .txt documents here
     ...
   src/
-    ingest.py
-    query.py
+    ingest.py          # document ingestion, chunking, embedding, storage
+    query.py           # query embedding, retrieval, prompt building, generation
   requirements.txt
   README.md
 ```
