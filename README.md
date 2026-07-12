@@ -4,7 +4,7 @@ This project is a small Retrieval-Augmented Generation (RAG) prototype built to 
 
 It ingests documents from a `data/` folder, chunks them, generates embeddings, stores them in a lightweight local vector store (`sqlite-vec`), retrieves the top-k most relevant passages for a user query, and uses a local LLM via Ollama to produce an answer grounded in those passages.
 
-The goal of this demo is not production readiness. The goal is to make the retrieval behavior easy to inspect, debug, and explain.
+Built to deepen my understanding of RAG systems from the ground up, every component from chunking to retrieval to generation is implemented explicitly and kept inspectable, making it easy to understand where the pipeline succeeds and where it fails.
 
 ---
 
@@ -180,28 +180,13 @@ Overlapping chunks reduce the chance of losing meaning at chunk boundaries. This
 * Not production-ready for concurrency, access control, or deployment
 * Struggles with broad or summarization-style queries when `k` is small, since retrieval returns only a few local chunks rather than full document context
 
-## Debuggability
+## Observability
 
 The system is intentionally verbose. It prints retrieved chunks, chunk IDs, document IDs, and vector distances before showing the final answer. This makes it easy to see:
 
 * whether the right documents were retrieved
 * whether the answer is grounded in the retrieved passages
 * where retrieval failed when the answer is incorrect
-
-## Requirements Satisfied
-
-| Requirements                                     | Implementation                                                         |
-| ------------------------------------------------ | ---------------------------------------------------------------------- |
-| Build a prototype over 10–30 documents           | Local `.txt` files placed in `data/`                                   |
-| Ingest and chunk the documents                   | `src/ingest.py` loads and chunks each document                         |
-| Generate embeddings                              | `sentence-transformers` with `all-MiniLM-L6-v2`                        |
-| Store embeddings in a lightweight vector store   | SQLite + `sqlite-vec`                                                  |
-| Retrieve top-k relevant passages                 | `src/query.py` retrieves the nearest chunks                            |
-| Produce an answer grounded in retrieved passages | Ollama prompt uses only retrieved context                              |
-| Show final answer and retrieved context          | CLI prints both clearly                                                |
-| Simple local option for vector store             | `sqlite-vec` is used locally with SQLite                               |
-| Deliverable can be CLI / notebook / web app      | Implemented as a CLI                                                   |
-| Include setup instructions and explanation       | This README includes setup, design choices, tradeoffs, and limitations |
 
 ## Example Usage
 
